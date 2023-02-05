@@ -1,6 +1,15 @@
-import { Monad } from "./utils.ts";
+interface OptionInterface<T> {
+  map<U>(fn: (x: T) => U): Option<U>;
+  flatMap<U>(fn: (x: T) => Option<U>): Option<U>;
+  forEach(fn: (x: T) => void): void;
+  match<U>({ some, none }: { some: (x: T) => U; none: () => U }): U;
+  get(): T;
+  getOrElse(value: T): T;
+  isSome(): boolean;
+  isNone(): boolean;
+}
 
-export abstract class Option<T> implements Monad<T> {
+export abstract class Option<T> implements OptionInterface<T> {
   public abstract map<U>(fn: (x: T) => U): Option<U>;
 
   public abstract flatMap<U>(fn: (x: T) => Option<U>): Option<U>;
