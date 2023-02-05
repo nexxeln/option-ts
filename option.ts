@@ -18,10 +18,8 @@ export abstract class Option<T> implements Monad<T> {
   public abstract getOrElse(value: T): T;
 }
 
-export class Some<T> extends Option<T> {
+export class Some<T> implements Option<T> {
   constructor(private readonly _value: T) {
-    super();
-
     if (this._value === undefined || this._value === null) {
       throw new Error("Value must be not null and not undefined");
     }
@@ -48,7 +46,7 @@ export class Some<T> extends Option<T> {
   }
 }
 
-export class None<T> extends Option<T> {
+export class None<T> implements Option<T> {
   public map<U>(_: (x: T) => U): Option<U> {
     return new None();
   }
