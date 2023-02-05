@@ -16,7 +16,12 @@ export abstract class Option<T> implements Monad<T> {
   }): U;
 
   public abstract get(): T;
+
   public abstract getOrElse(value: T): T;
+
+  public abstract isSome(): boolean;
+
+  public abstract isNone(): boolean;
 }
 
 export class Some<T> implements Option<T> {
@@ -49,6 +54,14 @@ export class Some<T> implements Option<T> {
   public getOrElse(_: T): T {
     return this._value;
   }
+
+  public isSome(): boolean {
+    return true;
+  }
+
+  public isNone(): boolean {
+    return false;
+  }
 }
 
 export class None<T> implements Option<T> {
@@ -74,6 +87,14 @@ export class None<T> implements Option<T> {
 
   public getOrElse<U>(value: U): U {
     return value;
+  }
+
+  public isSome(): boolean {
+    return false;
+  }
+
+  public isNone(): boolean {
+    return true;
   }
 }
 
