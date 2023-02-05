@@ -68,8 +68,12 @@ export class None<T> implements Option<T> {
   }
 }
 
+export const some = <T>(value: T): Option<T> => new Some(value);
+
+export const none = <T>(): Option<T> => new None();
+
 export const option = <T>(value: T | null | undefined): Option<T> =>
-  value === undefined || value === null ? new None() : new Some(value);
+  value === null || value === undefined ? none() : some(value);
 
 export const match = <T, U>(
   option: Option<T>,
