@@ -40,10 +40,9 @@ export const imperative = (as: ReadonlyArray<number>): string => {
 
 export const functional = (as: ReadonlyArray<number>): string => {
   const head = <A>(as: ReadonlyArray<A>): Option<A> =>
-    as.length === 0 ? none() : some(as[0]);
+    as.length === 0 ? none : some(as[0]);
 
-  const inverse = (x: number): Option<number> =>
-    x === 0 ? none() : some(1 / x);
+  const inverse = (x: number): Option<number> => (x === 0 ? none : some(1 / x));
 
   return head(as)
     .map(double)
