@@ -29,6 +29,7 @@ const someNumber = some(5);
 //    ^? const maybeNumber: Option<number>
 
 const someString = some("hello");
+//   ^? const maybeString: Option<string>
 ```
 
 ### Getting a value from an Option
