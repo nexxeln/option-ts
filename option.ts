@@ -15,6 +15,7 @@ export abstract class Option<T> implements Monad<T> {
     none: () => U;
   }): U;
 
+  public abstract get(): T;
   public abstract getOrElse(value: T): T;
 }
 
@@ -41,6 +42,10 @@ export class Some<T> implements Option<T> {
   public match = <U>({ some, none }: { some: (x: T) => U; none: () => U }): U =>
     some(this._value);
 
+  public get(): T {
+    return this._value;
+  }
+
   public getOrElse(_: T): T {
     return this._value;
   }
@@ -62,6 +67,10 @@ export class None<T> implements Option<T> {
   // deno-lint-ignore no-unused-vars
   public match = <U>({ some, none }: { some: (x: T) => U; none: () => U }): U =>
     none();
+
+  public get(): T {
+    throw new Error("Cannot get value from None");
+  }
 
   public getOrElse<U>(value: U): U {
     return value;
