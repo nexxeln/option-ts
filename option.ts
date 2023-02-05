@@ -119,5 +119,7 @@ export const match = <T, U>(
   { some, none }: { some: (x: T) => U; none: () => U }
 ): U => option.match({ some, none });
 
+export const get = <T>(option: Option<T>): T => option.get();
+
 export const getOrElse = <T>(option: Option<T>, value: T): T =>
   option.getOrElse(value);
