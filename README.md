@@ -241,8 +241,8 @@ const divide = (x: number, y: number): Option<number> =>
 const result = divide(10, 2);
 
 result.match({
-  Some: (res) => console.log(`Result: ${res}`),
-  None: () => console.log("Cannot divide by zero.")
+  some: (res) => console.log(`Result: ${res}`),
+  none: () => console.log("Cannot divide by zero.")
 });
 ```
 
